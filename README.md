@@ -83,6 +83,7 @@ library(rJava)
 ```
 
 4 Instalar package RORacle
+É possível descarregar o package deste próprio repositório, [pelo seguinte link](https://github.com/rafabelokurows/Setup-packages-Kantar/blob/main/ROracle_1.3-2.tar.gz?raw=true)
 ```
 install.packages("C:\\Users\\BELOKUROWSR\\Desktop\\ROracle_1.3-2.tar.gz", repos = NULL, type="source",INSTALL_opts="--no-multiarch")
 ```
