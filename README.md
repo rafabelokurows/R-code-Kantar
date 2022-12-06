@@ -1,12 +1,21 @@
-# Setup packages R Kantar
-Este repositório visa mostrar como instalar dois dos packages necessário à execução de funções de um Data Analyst na Kantar.  
+# Configuração reports e programas R Kantar
+Este repositório visa mostrar como configurar um computador para executar reports da Kantar.
+
+1. Packages que requerem um processo de instalação customizado
+2. Fontes de dados ODBC para execução de reports
+
+
+## Packages
+Primeiro, há dois packages de R que são necessários à execução de funções de um Data Analyst na Kantar.  
 
 **ROracle**: para conexão à bases de dados Oracle  
 **RDCOMClient**: para envio de e-mails através do R  
 
-São dois packages que não são mais mantidos por seus desenvolvedores, e por isso, exigem um malabarismo extra para instalar na versão mais atual do R (4+)
+São dois packages que não são mais mantidos por seus desenvolvedores, e por isso, exigem um esforço extra para instalar na versão mais atual do R (4+)
 
-## RDCOMClient 
+
+
+### RDCOMClient 
 Pré-requisitos:
 RStudio e RTools
 
@@ -29,7 +38,7 @@ library(RDCOMClient)
 Outlook <- COMCreate("Outlook.Application")
 ```
 
-## ROracle
+### ROracle
 
 Pré-requisitos:
 Oracle Database
@@ -99,3 +108,72 @@ ROracle::dbGetQuery(con, query)
 Resultado deve ser igual a:  
 
 ![image](https://user-images.githubusercontent.com/55976107/199972832-01a411ed-8246-40f7-84c4-12d30e119eec.png)
+
+## Fontes de dados ODBC
+
+As fontes de dados ODBC permitem uma conexão parametrizada e direta a uma base de dados específica. Por isso, os reports e programas que venho desenvolvendo em R utilizam esta forma de conexão a algumas de nossas bases de dados.  
+
+Obs: Importante que elas sejam configuradas no **configurador 64 bits** do Windows.
+
+
+1 Acessar o configurador 64 bits do Windows:   
+
+![image](https://user-images.githubusercontent.com/55976107/205894268-16c43608-71d1-4e64-86b6-6f3c72b4d22b.png)
+
+2 Clicar em add:  
+
+![image](https://user-images.githubusercontent.com/55976107/205894777-a40f0f7c-f51d-4614-9936-dbb625f7ac4d.png)
+
+3 Selecionar SQL Server e clicar em Finish:
+
+![image](https://user-images.githubusercontent.com/55976107/205894976-d15a94f7-a251-4e64-8a97-1ee6f64ec9df.png)
+
+4 Informar primeiro o nome da fonte de dados e o servidor à qual ela se conectará -> Next:  
+
+Name: caticawi  
+Server: KWSTCSQL002
+
+![image](https://user-images.githubusercontent.com/55976107/205900057-64747dcf-0030-408d-b8c0-a9d7798ffd0a.png)
+
+5 Selecionar autenticação SQL Server (2ª opção), informar o usuário e senha:
+
+![image](https://user-images.githubusercontent.com/55976107/205900398-7f5aacad-9108-4efb-8c2c-7439a98e8179.png)
+
+6 Selecionar a base de dados específica a qual esta fonte se conectará
+
+Default database: CATICAWI
+
+![image](https://user-images.githubusercontent.com/55976107/205900599-e4011dcd-c461-4a51-8832-2c7dea6a4a08.png)
+
+7 Não precisa mudar nada, só clicar em Finish:
+
+![image](https://user-images.githubusercontent.com/55976107/205900738-05c2bad5-4d96-4d7c-a799-6397fa7cc81f.png)
+
+8 Por fim, é possível testar a conexão:
+
+![image](https://user-images.githubusercontent.com/55976107/205900841-a00a2fc2-d8de-4a2d-a29f-84b0541250be.png)
+
+Se o resultado for esse, deu tudo certo:  
+
+![image](https://user-images.githubusercontent.com/55976107/205900974-448d3d7b-a79c-43c9-8f7b-552db5f52284.png)
+
+As fontes de dados a configurar para os reports são:
+1.
+Name: caticawi
+Server: KWSTCSQL002
+Default database: CATICAWI
+
+2.
+Name: demopan
+Server: KWSTCSQL002
+Default database: DEMOPAN
+
+3. 
+Name: maestro
+Server: KWSTCSQL002
+Default database: MAESTRO
+
+4.
+Name: PANELSMART
+Server: WKLN4PAPP0024
+Default database: PANELSMART
