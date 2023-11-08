@@ -42,7 +42,7 @@ Outlook <- COMCreate("Outlook.Application")
 
 1. Instalar o Java JDK
 
-Ele pode ser obtido em:
+Ele pode ser descarregado a partir de:
 https://www.oracle.com/pt/java/technologies/downloads/
 
 2. Configurar a variável de ambiente do Windos com a localização do Java (JAVA_HOME)
@@ -58,11 +58,13 @@ install.packages("rJava")
 library(rJava)
 ```
 
-4. Obter ficheiros do package RORacle e adicionar à pasta do R
+4. Obter ficheiros do package RORacle e adicionar à pasta do R  
+
 A seguir, obteremos os ficheiros de um computador que já tenha este package instalado, e adicionaremos à biblioteca do R do computador que estamos configurando:
 
 4.1 
-Descarregar os ficheiros do package que disponibilizo [pelo seguinte link](https://github.com/rafabelokurows/Setup-packages-Kantar/blob/main/ROracle_1.3-2.tar.gz?raw=true). Depois, extrair este ficheiro.
+Descarregar os ficheiros do package de \\kwstcfil007\Operaciones\Calidad\Portugal\ROracle.zip.  
+Em seguida, extrair este ficheiro.
 
 4.2
 No RStudio, descobrir a pasta da biblioteca, executando o seguinte comando:
@@ -73,10 +75,20 @@ Este comando mostrará como resultado um ou dois caminhos, que são as bibliotec
 ![image](https://github.com/rafabelokurows/setup-reports-Kantar/assets/55976107/5094c4f6-a449-4a9a-b61e-78c4375414f3)
 
 4.3 
-Entrar em cada um destes diretórios e meter a pasta ROracle extraída na etapa 4.1.
+Entrar em cada um destes diretórios e meter a pasta ROracle extraída na etapa 4.1 dentro deles.
 
 
+5. Para saber se funcionou
+```
+library(ROracle)
+source('K:/Portugal/Yoyo/Macros R Conexiones.R')
+con=Conexio_ISEC_PT('64Bits')
+query="select * from dual"
+ROracle::dbGetQuery(con, query)
+```
+Resultado deve ser igual a:  
 
+![image](https://user-images.githubusercontent.com/55976107/199972832-01a411ed-8246-40f7-84c4-12d30e119eec.png)
 
 
 <details>
