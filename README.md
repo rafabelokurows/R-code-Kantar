@@ -5,17 +5,17 @@ Este repositório visa mostrar como configurar um computador para executar repor
 2. Fontes de dados ODBC para execução de reports
 
 
-## Packages
+# Packages
 Primeiro, há dois packages de R que são necessários à execução de funções de um Data Analyst na Kantar.  
 
-**ROracle**: para conexão à bases de dados Oracle  
-**RDCOMClient**: para envio de e-mails através do R  
+* **ROracle**: para conexão à bases de dados Oracle  
+* **RDCOMClient**: para envio de e-mails através do R  
 
 São dois packages que não são mais mantidos por seus desenvolvedores, e por isso, exigem um esforço extra para instalar na versão mais atual do R (4+)
 
 
 
-### RDCOMClient 
+## RDCOMClient 
 Pré-requisitos:
 RStudio e RTools
 
@@ -38,8 +38,49 @@ library(RDCOMClient)
 Outlook <- COMCreate("Outlook.Application")
 ```
 
-### ROracle
+## ROracle
 
+1. Instalar o Java JDK
+
+Ele pode ser obtido em:
+https://www.oracle.com/pt/java/technologies/downloads/
+
+2. Configurar a variável de ambiente do Windos com a localização do Java (JAVA_HOME)
+
+Aqui tem um guia de como configurar uma variável de ambiente do Windows:
+https://phoenixnap.com/kb/windows-set-environment-variable#ftoc-heading-4  
+Para esta nossa variável, indicar a pasta onde foi instalado o Java SDK:  
+![image](https://user-images.githubusercontent.com/55976107/199969601-99d15c27-82fd-4cf9-bc90-dcf8516fbaf2.png)
+
+3. No RStudio, instalar o package rJava
+```
+install.packages("rJava")
+library(rJava)
+```
+
+4. Obter ficheiros do package RORacle e adicionar à pasta do R
+A seguir, obteremos os ficheiros de um computador que já tenha este package instalado, e adicionaremos à biblioteca do R do computador que estamos configurando:
+
+4.1 
+Descarregar os ficheiros do package que disponibilizo [pelo seguinte link](https://github.com/rafabelokurows/Setup-packages-Kantar/blob/main/ROracle_1.3-2.tar.gz?raw=true). Depois, extrair este ficheiro.
+
+4.2
+No RStudio, descobrir a pasta da biblioteca, executando o seguinte comando:
+```
+.libPaths()
+```
+Este comando mostrará como resultado um ou dois caminhos, que são as bibliotecas de R neste computador:
+![image](https://github.com/rafabelokurows/setup-reports-Kantar/assets/55976107/5094c4f6-a449-4a9a-b61e-78c4375414f3)
+
+4.3 
+Entrar em cada um destes diretórios e meter a pasta ROracle extraída na etapa 4.1.
+
+
+
+
+
+<details>
+  <summary><i>Como era feito antes - clique para ver mais</i></summary>
 Pré-requisitos:
 Oracle Database
 Java SDK
@@ -92,7 +133,7 @@ library(rJava)
 ```
 
 4 Instalar package RORacle
-É possível descarregar o package deste próprio repositório, [pelo seguinte link](https://github.com/rafabelokurows/Setup-packages-Kantar/blob/main/ROracle_1.3-2.tar.gz?raw=true)
+É possível descarregar o package deste próprio repositório, [pelo seguinte link](https://github.com/rafabelokurows/Setup-packages-Kantar/blob/main/ROracle.zip?raw=true)
 ```
 install.packages("C:\\Users\\BELOKUROWSR\\Desktop\\ROracle_1.3-2.tar.gz", repos = NULL, type="source",INSTALL_opts="--no-multiarch")
 ```
@@ -109,7 +150,9 @@ Resultado deve ser igual a:
 
 ![image](https://user-images.githubusercontent.com/55976107/199972832-01a411ed-8246-40f7-84c4-12d30e119eec.png)
 
-## Fontes de dados ODBC
+</details>
+
+# Fontes de dados ODBC
 
 As fontes de dados ODBC permitem uma conexão parametrizada e direta a uma base de dados específica. Por isso, os reports e programas que venho desenvolvendo em R utilizam esta forma de conexão a algumas de nossas bases de dados.  
 
